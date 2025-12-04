@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love! ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ffa5a5;
+            --accent-color: #ffd3d3;
+            --text-color: #333;
+            --light-color: #fff9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in-out;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .heart-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .heart-divider::before,
+        .heart-divider::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+        }
+        
+        .heart-divider i {
+            margin: 0 15px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .message-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        /* Slider Sections */
+        .slider-section {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .image-slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 400px;
+        }
+        
+        .image-slider img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Fixed Nickname Slider */
+        .name-slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 120px;
+        }
+        
+        .name-slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+        
+        .name-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        
+        .slider-dots {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 80%;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        .slider-nav button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider-nav button:hover {
+            background: #ff4757;
+            transform: translateY(-3px);
+        }
+        
+        .surprise-section {
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        
+        button#surpriseBtn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        button#surpriseBtn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.5);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            font-style: italic;
+            color: #555;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            animation: fadeIn 1s ease-out;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+            }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+            z-index: 1000;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .image-slider {
+                height: 300px;
+            }
+            
+            .name-slide {
+                font-size: 1.8rem;
+            }
+            
+            .slider-dots {
+                max-width: 70%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+            
+            .image-slider {
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .name-slide {
+                font-size: 1.5rem;
+            }
+            
+            .slider-dots {
+                max-width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        
+        <div class="header">
+            <h1>Happy Birthday, Meri Dobhii ❤️</h1>
+            <p class="subtitle">To the most amazing person in my life</p>
+        </div>
+        
+        <div class="heart-divider">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="message-section">
+            <p class="message">A Note For You</p>
+            <p class="message">Happy Birthday Normal.</p>
+            <p class="message">Another year of you — and I can’t tell you how grateful I am that I get to be here with you through it all.</p>
+            <p class="message">We’ve had our fights, our misunderstandings, our moments where things felt heavy… but somehow, we still end up choosing each other. Every single time. And that’s what makes us special. That’s what makes us strong.</p>
+            <p class="message">We grew through the rough days, held on through the tough ones, and loved harder after every little storm we walked through. And honestly? I wouldn’t trade any of it, because it all led us here — closer, softer, and more connected than before.</p>
+            <p class="message">You’re still my comfort place in a world that gets too loud.</p>
+            <p class="message">Still the warm feeling I come back to.</p>
+            <p class="message">Still the soft spot in my heart where everything feels a little lighter.</p>
+            <p class="message">On your birthday, I just want one thing:</p>
+            <p class="message">For you to feel loved the way you make me feel — deeply, calmly, quietly, and completely.</p>
+            <p class="message">This year, I hope we keep growing, keep laughing, keep choosing each other… even on the messy days.
+Because you’re worth every bit of it.</p>
+            <p class="message">And I’m so, so grateful for you.</p>
+            <p class="message">Happy Birthday, My Panda .</p>
+            <p class="message">You’re my favorite part of every day. 💛✨</p>
+            <!-- <p class="message">On this special day, I want you to know how incredibly grateful I am to have you in my life. You bring so much joy, laughter, and meaning to my world.</p>
+            <p class="message">Your smile brightens my darkest days, your presence comforts my soul, and your love completes me in ways I never thought possible.</p>
+            <p class="message">Today is all about celebrating you - the beautiful, wonderful, incredible person you are. May this year bring you all the happiness, love, and success you deserve.</p> -->
+        </div>
+        
+        <!-- Photo Slider Section -->
+        <div class="slider-section">
+            <h2 class="section-title">ALL I See is YOU <3 </h2>
+            <div class="slider-container">
+                <div class="image-slider" id="imageSlider">
+                    <!-- Replace these with your local images -->
+                    <img src="he/sh/b/im/1.jpeg" alt="Our Memory 1">
+                    <img src="he/sh/b/im/2.jpeg" alt="Our Memory 2">
+                    <img src="he/sh/b/im/3.jpeg" alt="Our Memory 3">
+                    <img src="he/sh/b/im/4.jpeg" alt="Our Memory 4">
+                    <img src="he/sh/b/im/5.jpeg" alt="Our Memory 5">
+                    <!-- ADD MORE IMAGES HERE -->
+                    <img src="he/sh/b/im/6.jpeg" alt="Our Memory 6">
+                    <img src="he/sh/b/im/7.jpeg" alt="Our Memory 7">
+                    <!-- <img src="8.jpeg" alt="Our Memory 8">
+                    <img src="9.jpeg" alt="Our Memory 9">
+                    <img src="10.jpeg" alt="Our Memory 10"> -->
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button id="imagePrevBtn"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots" id="imageSliderDots">
+                    <!-- Dots will be added by JavaScript -->
+                </div>
+                <button id="imageNextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Nicknames Slider Section -->
+        <div class="slider-section">
+            <h2 class="section-title"> I adore You </h2>
+            <h6 style="text-align:center; margin-bottom:20px; color:#555;">(All the cute nicknames I have for you! <3 )</h6>
+            <div class="name-slider-container">
+                <div class="name-slider" id="nameSlider">
+                    <!-- Nickname slides will be added by JavaScript -->
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button id="namePrevBtn"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots" id="nameSliderDots">
+                    <!-- Dots will be added by JavaScript -->
+                </div>
+                <button id="nameNextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="surprise-section">
+            <button id="surpriseBtn">Click Here !</button>
+            <div id="hiddenMessage" class="hidden-message">
+                You're the best thing that ever happened to me. Every day with you is a blessing, and I cherish every moment we share. Happy Birthday , Meri Radhee ! 🎉❤️
+                <img src="he/sh/b/im/8.png" alt="something cute" style="display:block; margin: 20px auto; max-width: 200px;">
+                
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Made with love for your special day 💖</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                
+                // Random properties
+                const size = Math.random() * 15 + 10;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                // Random color
+                const colors = ['#ff6b6b', '#ffa5a5', '#ffd3d3', '#ff9a9e'];
+                heart.style.background = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Nicknames data
+        const nicknames = [
+            "My Sunshine", "Meri Radhe", "My Panda", "My Love", 
+            "Normal", "My Baby", "My Curry Patta", "My Cupcake 🧁",
+            "Meri Laddo", "My Cutiee Piee", "Meri Dobhiii",
+            "My Alooo", "Mommyyyyyy"
+        ];
+        
+        // Initialize sliders
+        function initializeSlider(sliderId, dotsContainerId, prevBtnId, nextBtnId, items, isImageSlider = false) {
+            const slider = document.getElementById(sliderId);
+            const dotsContainer = document.getElementById(dotsContainerId);
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            
+            // Create slides
+            items.forEach((item, index) => {
+                if (isImageSlider) {
+                    // For image slider, items are already in the HTML
+                    // We just need to create dots
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                } else {
+                    // For name slider, create slides
+                    const slide = document.createElement('div');
+                    slide.className = 'name-slide';
+                    slide.textContent = item;
+                    slider.appendChild(slide);
+                    
+                    // Create dots
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                }
+            });
+            
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlider();
+                resetAutoSlide();
+            }
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateSlider();
+            }
+            
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateSlider();
+            }
+            
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 3000);
+            }
+            
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+            
+            // Event listeners for manual navigation
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlide();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlide();
+            });
+            
+            // Pause auto-slide on hover
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                startAutoSlide();
+            });
+            
+            // Start auto-sliding
+            startAutoSlide();
+            
+            return {
+                goToSlide,
+                nextSlide,
+                prevSlide
+            };
+        }
+        
+        // Surprise button
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            hiddenMessage.style.display = 'block';
+            
+            // Confetti
+            for (let i = 0; i < 150; i++) {
+                createConfetti();
+            }
+            
+            // Optional: Play a sound (remove if no audio file)
+            try {
+                const audio = new Audio('happy-birthday.mp3');
+                audio.play();
+            } catch (e) {
+                console.log("Audio error: " + e);
+            }
+            
+            // Change button text
+            this.textContent = "I Love You! ❤️";
+            this.disabled = true;
+        });
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            const colors = ['#ff6b6b', '#ffa502', '#2ed573', '#1e90ff', '#ff4757', '#a55eea'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createFloatingHearts();
+            
+            // Initialize image slider
+            const imageItems = Array.from(document.querySelectorAll('#imageSlider img'));
+            initializeSlider(
+                'imageSlider', 
+                'imageSliderDots', 
+                'imagePrevBtn', 
+                'imageNextBtn', 
+                imageItems, 
+                true
+            );
+            
+            // Initialize name slider
+            initializeSlider(
+                'nameSlider', 
+                'nameSliderDots', 
+                'namePrevBtn', 
+                'nameNextBtn', 
+                nicknames, 
+                false
+            );
+        });
+    </script>
+</body>
+</html>
